@@ -1,16 +1,17 @@
 from ctypes import *
 import platform
 
-if platform.system() == 'Windows':
-	__NomeBiblioteca = 'DarumaFrameWork'
-	__ExtBiblioteca = '.dll'
-	__PathBiblioteca = ''
-	__Biblioteca = windll.LoadLibrary(__PathBiblioteca + __NomeBiblioteca + __ExtBiblioteca)
-else:
-	__NomeBiblioteca = 'libDarumaFramework'
-	__ExtBiblioteca = '.so'
-	__PathBiblioteca = '/usr/local/lib/'
-	__Biblioteca = CDLL.LoadLibrary(__PathBiblioteca + __NomeBiblioteca + __ExtBiblioteca)
+if __Biblioteca == None:
+	if platform.system() == 'Windows':
+		__NomeBiblioteca = 'DarumaFrameWork'
+		__ExtBiblioteca = '.dll'
+		__PathBiblioteca = ''
+		__Biblioteca = windll.LoadLibrary(__PathBiblioteca + __NomeBiblioteca + __ExtBiblioteca)
+	else:
+		__NomeBiblioteca = 'libDarumaFramework'
+		__ExtBiblioteca = '.so'
+		__PathBiblioteca = '/usr/local/lib/'
+		__Biblioteca = CDLL.LoadLibrary(__PathBiblioteca + __NomeBiblioteca + __ExtBiblioteca)
 
 ''' Métodos do modulo genérico '''
 def eAbrirSerial_Daruma(StrPorta, StrVelocidade):
@@ -842,46 +843,50 @@ def eWsStatus_ECF_Daruma(iRespostaWS):
 
 ''' Métodos do modulo DUAL '''
 def regAguardarProcesso_DUAL_DarumaFramework(valor):
-	return __Biblioteca.regAguardarProcesso_DUAL_DarumaFramework()
+	return __Biblioteca.regAguardarProcesso_DUAL_DarumaFramework(valor.encode('latin-1'))
 
 def regCodePageAutomatico_DUAL_DarumaFramework(valor):
-	return __Biblioteca.regCodePageAutomatico_DUAL_DarumaFramework()
+	return __Biblioteca.regCodePageAutomatico_DUAL_DarumaFramework(valor.encode('latin-1'))
 
 def regEnterFinal_DUAL_DarumaFramework(valor):
-	return __Biblioteca.regEnterFinal_DUAL_DarumaFramework()
+	return __Biblioteca.regEnterFinal_DUAL_DarumaFramework(valor.encode('latin-1'))
 
 def regInicializou_DUAL_DarumaFramework(valor):
-	return __Biblioteca.regInicializou_DUAL_DarumaFramework()
+	return __Biblioteca.regInicializou_DUAL_DarumaFramework(valor.encode('latin-1'))
 
 def regLinhasGuilhotina_DUAL_DarumaFramework(valor):
-	return __Biblioteca.regLinhasGuilhotina_DUAL_DarumaFramework()
+	return __Biblioteca.regLinhasGuilhotina_DUAL_DarumaFramework(valor.encode('latin-1'))
 
 def regModoGaveta_DUAL_DarumaFramework(gavetastatus):
-	return __Biblioteca.regModoGaveta_DUAL_DarumaFramework()
+	return __Biblioteca.regModoGaveta_DUAL_DarumaFramework(gavetastatus.encode('latin-1'))
 
 def regPortaComunicacao_DUAL_DarumaFramework(valor):
-	return __Biblioteca.regPortaComunicacao_DUAL_DarumaFramework()
+	return __Biblioteca.regPortaComunicacao_DUAL_DarumaFramework(valor.encode('latin-1'))
 
 def regTabulacao_DUAL_DarumaFramework(valor):
-	return __Biblioteca.regTabulacao_DUAL_DarumaFramework()
+	return __Biblioteca.regTabulacao_DUAL_DarumaFramework(valor.encode('latin-1'))
 
 def regTermica_DUAL_DarumaFramework(valor):
-	return __Biblioteca.regTermica_DUAL_DarumaFramework()
+	return __Biblioteca.regTermica_DUAL_DarumaFramework(valor.encode('latin-1'))
 
 def regVelocidade_DUAL_DarumaFramework(valor):
-	return __Biblioteca.regVelocidade_DUAL_DarumaFramework()
+	return __Biblioteca.regVelocidade_DUAL_DarumaFramework(valor.encode('latin-1'))
 
 def regZeroCortado_DUAL_DarumaFramework(valor):
-	return __Biblioteca.regZeroCortado_DUAL_DarumaFramework()
+	return __Biblioteca.regZeroCortado_DUAL_DarumaFramework(valor.encode('latin-1'))
 
 def rConsultaStatusImpressora_DUAL_DarumaFramework(indice, tipo, impressoraStatus):
-	return __Biblioteca.rConsultaStatusImpressora_DUAL_DarumaFramework()
+	return __Biblioteca.rConsultaStatusImpressora_DUAL_DarumaFramework(
+		indice.encode('latin-1'), 
+		tipo.encode('latin-1'), 
+		c_char_p(impressoraStatus)
+	)
 
 def rStatusDocumento_DUAL_DarumaFramework():
 	return __Biblioteca.rStatusDocumento_DUAL_DarumaFramework()
 
 def rStatusGaveta_DUAL_DarumaFramework(gavetaStatus):
-	return __Biblioteca.rStatusGaveta_DUAL_DarumaFramework()
+	return __Biblioteca.rStatusGaveta_DUAL_DarumaFramework(gavetaStatus.encode('latin-1'))
 
 def rStatusImpressora_DUAL_DarumaFramework():
 	return __Biblioteca.rStatusImpressora_DUAL_DarumaFramework()
@@ -893,19 +898,29 @@ def iAcionarGaveta_DUAL_DarumaFramework():
 	return __Biblioteca.iAcionarGaveta_DUAL_DarumaFramework()
 
 def iAutenticarDocumento_DUAL_DarumaFramework(documento, local, timeout):
-	return __Biblioteca.iAutenticarDocumento_DUAL_DarumaFramework()
+	return __Biblioteca.iAutenticarDocumento_DUAL_DarumaFramework(
+		documento, 
+		local, 
+		timeout
+	)
 
 def iImprimirArquivo_DUAL_DarumaFramework(arquivo):
-	return __Biblioteca.iImprimirArquivo_DUAL_DarumaFramework()
+	return __Biblioteca.iImprimirArquivo_DUAL_DarumaFramework(arquivo.encode('latin-1'))
 
 def iImprimirTexto_DUAL_DarumaFramework(texto, tamanhoTexto):
-	return __Biblioteca.iImprimirTexto_DUAL_DarumaFramework()
+	return __Biblioteca.iImprimirTexto_DUAL_DarumaFramework(
+		texto.encode('latin-1'), 
+		tamanhoTexto.encode('latin-1')
+	)
 
 def iConfigurarGuilhotina_DUAL_DarumaFramework(habilitar, quantidadeLinha):
-	return __Biblioteca.iConfigurarGuilhotina_DUAL_DarumaFramework()
+	return __Biblioteca.iConfigurarGuilhotina_DUAL_DarumaFramework(
+		habilitar.encode('latin-1'), 
+		quantidadeLinha.encode('latin-1')
+	)
 
 def iEnviarBMP_DUAL_DarumaFramework(arquivoOrigem):
-	return __Biblioteca.iEnviarBMP_DUAL_DarumaFramework()
+	return __Biblioteca.iEnviarBMP_DUAL_DarumaFramework(arquivoOrigem.encode('latin-1'))
 
 def iLimparBuffer_DUAL_DarumaFramework():
 	return __Biblioteca.iLimparBuffer_DUAL_DarumaFramework()
@@ -918,7 +933,7 @@ def eAtivarConexaoCsd_MODEM_DarumaFramework():
 	return __Biblioteca.eAtivarConexaoCsd_MODEM_DarumaFramework()
 
 def eApagarSms_MODEM_DarumaFramework(indice):
-	return __Biblioteca.eApagarSms_MODEM_DarumaFramework()
+	return __Biblioteca.eApagarSms_MODEM_DarumaFramework(indice.encode('latin-1'))
 
 def eFinalizarChamadaCsd_MODEM_DarumaFramework():
 	return __Biblioteca.eFinalizarChamadaCsd_MODEM_DarumaFramework()
@@ -930,46 +945,58 @@ def eInicializar_MODEM_DarumaFramework():
 	return __Biblioteca.eInicializar_MODEM_DarumaFramework()
 
 def eRealizarChamadaCsd_MODEM_DarumaFramework(telefone):
-	return __Biblioteca.eRealizarChamadaCsd_MODEM_DarumaFramework()
+	return __Biblioteca.eRealizarChamadaCsd_MODEM_DarumaFramework(telefone.encode('latin-1'))
 
 def eTrocarBandeja_MODEM_DarumaFramework():
 	return __Biblioteca.eTrocarBandeja_MODEM_DarumaFramework()
 
 def regLerApagar_MODEM_DarumaFramework(valor):
-	return __Biblioteca.regLerApagar_MODEM_DarumaFramework()
+	return __Biblioteca.regLerApagar_MODEM_DarumaFramework(valor.encode('latin-1'))
 
 def regPorta_MODEM_DarumaFramework(valor):
-	return __Biblioteca.regPorta_MODEM_DarumaFramework()
+	return __Biblioteca.regPorta_MODEM_DarumaFramework(valor.encode('latin-1'))
 
 def regThread_MODEM_DarumaFramework(valor):
-	return __Biblioteca.regThread_MODEM_DarumaFramework()
+	return __Biblioteca.regThread_MODEM_DarumaFramework(valor.encode('latin-1'))
 
 def regVelocidade_MODEM_DarumaFramework(valor):
-	return __Biblioteca.regVelocidade_MODEM_DarumaFramework()
+	return __Biblioteca.regVelocidade_MODEM_DarumaFramework(valor.encode('latin-1'))
 
 def regCaptionWinAPP_MODEM_DarumaFramework(valor):
-	return __Biblioteca.regCaptionWinAPP_MODEM_DarumaFramework()
+	return __Biblioteca.regCaptionWinAPP_MODEM_DarumaFramework(valor.encode('latin-1'))
 
 def regBandejaInicio_MODEM_DarumaFramework(valor):
-	return __Biblioteca.regBandejaInicio_MODEM_DarumaFramework()
+	return __Biblioteca.regBandejaInicio_MODEM_DarumaFramework(valor.encode('latin-1'))
 
 def regTempoAlertar_MODEM_DarumaFramework(valor):
-	return __Biblioteca.regTempoAlertar_MODEM_DarumaFramework()
+	return __Biblioteca.regTempoAlertar_MODEM_DarumaFramework(valor.encode('latin-1'))
 
 def rReceberSms_MODEM_DarumaFramework(indice, mensagem, data, hora, remetente):
-	return __Biblioteca.rReceberSms_MODEM_DarumaFramework()
+	return __Biblioteca.rReceberSms_MODEM_DarumaFramework(
+		indice.encode('latin-1'), 
+		mensagem.encode('latin-1'), 
+		data.encode('latin-1'), 
+		hora.encode('latin-1'), 
+		remetente.encode('latin-1')
+	)
 
 def rReceberSmsIndice_MODEM_DarumaFramework(indice, mensagem, data, hora, remetente):
-	return __Biblioteca.rReceberSmsIndice_MODEM_DarumaFramework()
+	return __Biblioteca.rReceberSmsIndice_MODEM_DarumaFramework(
+		indice.encode('latin-1'), 
+		mensagem.encode('latin-1'), 
+		data.encode('latin-1'), 
+		hora.encode('latin-1'), 
+		remetente.encode('latin-1')		
+	)
 
 def rRetornarImei_MODEM_DarumaFramework(imei):
-	return __Biblioteca.rRetornarImei_MODEM_DarumaFramework()
+	return __Biblioteca.rRetornarImei_MODEM_DarumaFramework(imei.encode('latin-1'))
 
 def rRetornarOperadora_MODEM_DarumaFramework(operadora):
-	return __Biblioteca.rRetornarOperadora_MODEM_DarumaFramework()
+	return __Biblioteca.rRetornarOperadora_MODEM_DarumaFramework(operadora.encode('latin-1'))
 
 def rReceberDadosCsd_MODEM_DarumaFramework(resposta):
-	return __Biblioteca.rReceberDadosCsd_MODEM_DarumaFramework()
+	return __Biblioteca.rReceberDadosCsd_MODEM_DarumaFramework(resposta.encode('latin-1'))
 
 def rNivelSinalRecebido_MODEM_DarumaFramework():
 	return __Biblioteca.rNivelSinalRecebido_MODEM_DarumaFramework()
@@ -978,13 +1005,20 @@ def rListarSms_MODEM_DarumaFramework():
 	return __Biblioteca.rListarSms_MODEM_DarumaFramework()
 
 def tEnviarDadosCsd_MODEM_DarumaFramework(dados):
-	return __Biblioteca.tEnviarDadosCsd_MODEM_DarumaFramework()
+	return __Biblioteca.tEnviarDadosCsd_MODEM_DarumaFramework(dados.encode('latin-1'))
 
 def tEnviarSms_MODEM_DarumaFramework(telefone, mensagem):
-	return __Biblioteca.tEnviarSms_MODEM_DarumaFramework()
+	return __Biblioteca.tEnviarSms_MODEM_DarumaFramework(
+		telefone.encode('latin-1'), 
+		mensagem.encode('latin-1')
+	)
 
 def tEnviarSmsOperadora_MODEM_DarumaFramework(telefone, bandeja, mensagem):
-	return __Biblioteca.tEnviarSmsOperadora_MODEM_DarumaFramework()
+	return __Biblioteca.tEnviarSmsOperadora_MODEM_DarumaFramework(
+		telefone.encode('latin-1'), 
+		bandeja.encode('latin-1'), 
+		mensagem.encode('latin-1')
+	)
 
-def eBuscarPortaVelocide_MODEM_DarumaFramework():
-	return __Biblioteca.eBuscarPortaVelocide_MODEM_DarumaFramework()
+def eBuscarPortaVelocidade_MODEM_DarumaFramework():
+	return __Biblioteca.eBuscarPortaVelocidade_MODEM_DarumaFramework()
