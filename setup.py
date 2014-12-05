@@ -6,7 +6,7 @@ setup(
     name="pydaruma",
 
     # Version number (initial):
-    version="0.1.0",
+    version="0.1.1",
 
     # Application author details:
     author="Edinei Colli",
@@ -19,14 +19,13 @@ setup(
     include_package_data=True,
 
     # Details
-    #url="http://pypi.python.org/pypi/pydaruma_v010/",
     url="http://github.com/edineicolli/pydaruma",
 
     #
     license="GNU GPL",
     description="Wrapper for Daruma Framework library.",
 
-    long_description=open("README.md").read(),
+    long_description="Integração com impressoras Daruma utilizando a biblioteca DarumaFramework",
 
     # Dependent packages (distributions)
     install_requires=[
