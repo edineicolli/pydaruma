@@ -1,17 +1,19 @@
 from ctypes import *
 import platform
 
-if __Biblioteca == None:
-	if platform.system() == 'Windows':
-		__NomeBiblioteca = 'DarumaFrameWork'
-		__ExtBiblioteca = '.dll'
-		__PathBiblioteca = ''
-		__Biblioteca = windll.LoadLibrary(__PathBiblioteca + __NomeBiblioteca + __ExtBiblioteca)
-	else:
-		__NomeBiblioteca = 'libDarumaFramework'
-		__ExtBiblioteca = '.so'
-		__PathBiblioteca = '/usr/local/lib/'
-		__Biblioteca = CDLL.LoadLibrary(__PathBiblioteca + __NomeBiblioteca + __ExtBiblioteca)
+
+if platform.system() == 'Windows':
+	__NomeBiblioteca = 'DarumaFrameWork'
+	__ExtBiblioteca = '.dll'
+	__PathBiblioteca = ''
+	#__Biblioteca = windll.LoadLibrary(__PathBiblioteca + __NomeBiblioteca + __ExtBiblioteca)
+	__Biblioteca = windll.__getattr__(__PathBiblioteca + __NomeBiblioteca + __ExtBiblioteca)
+	print(__Biblioteca)	
+else:
+	__NomeBiblioteca = 'libDarumaFramework'
+	__ExtBiblioteca = '.so'
+	__PathBiblioteca = '/usr/local/lib/'
+	__Biblioteca = CDLL.LoadLibrary(__PathBiblioteca + __NomeBiblioteca + __ExtBiblioteca)
 
 ''' Métodos do modulo genérico '''
 def eAbrirSerial_Daruma(StrPorta, StrVelocidade):
@@ -514,10 +516,10 @@ def rGerarMapaResumo_ECF_Daruma():
 
 def rEfetuarDownloadMFD_ECF_Daruma(pszTipo, pszInicial, pszFinal, pszNomeArquivo):
 	return __Biblioteca.rEfetuarDownloadMFD_ECF_Daruma(
-		byref(c_char_p(pszTipo)),
-		byref(c_char_p(pszInicial)),
-		byref(c_char_p(pszFinal)),
-		byref(c_char_p(pszNomeArquivo))
+		pszTipo.encode('latin-1'),
+		pszInicial.encode('latin-1'),
+		pszFinal.encode('latin-1'),
+		pszNomeArquivo.encode('latin-1')
 	)
 
 def rEfetuarDownloadMF_ECF_Daruma(pszNomeArquivo):
@@ -834,8 +836,8 @@ def eWsEnviarCupom_ECF_Daruma(pszCPF, pszNomeFantasia, pszIndiceSegmento, pszCCF
 		pszValor.encode('latin-1'),
 		pszISS.encode('latin-1'),
 		pszICMS.encode('latin-1'),
-		szReservado.encode('latin-1'),
-		byref(c_short(iRespostaWS))
+		c_short(szReservado),
+		byref(c_int(iRespostaWS))
 	)
 
 def eWsStatus_ECF_Daruma(iRespostaWS):
