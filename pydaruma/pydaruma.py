@@ -892,7 +892,7 @@ def rStatusDocumento_DUAL_DarumaFramework():
 	return __Biblioteca.rStatusDocumento_DUAL_DarumaFramework()
 
 def rStatusGaveta_DUAL_DarumaFramework(gavetaStatus):
-	return __Biblioteca.rStatusGaveta_DUAL_DarumaFramework(gavetaStatus.encode('latin-1'))
+	return __Biblioteca.rStatusGaveta_DUAL_DarumaFramework(byref(c_int(gavetaStatus)))
 
 def rStatusImpressora_DUAL_DarumaFramework():
 	return __Biblioteca.rStatusImpressora_DUAL_DarumaFramework()
@@ -916,7 +916,7 @@ def iImprimirArquivo_DUAL_DarumaFramework(arquivo):
 def iImprimirTexto_DUAL_DarumaFramework(texto, tamanhoTexto):
 	return __Biblioteca.iImprimirTexto_DUAL_DarumaFramework(
 		texto.encode('latin-1'), 
-		tamanhoTexto.encode('latin-1')
+		c_int(tamanhoTexto)
 	)
 
 def iConfigurarGuilhotina_DUAL_DarumaFramework(habilitar, quantidadeLinha):
