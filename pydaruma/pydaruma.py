@@ -15,6 +15,10 @@ else:
 	__PathBiblioteca = '/usr/local/lib/'
 	__Biblioteca = CDLL.LoadLibrary(__PathBiblioteca + __NomeBiblioteca + __ExtBiblioteca)
 
+''' Métodos do modulo geral '''
+def eDefinirProduto_Daruma(pszProduto):
+	return __Biblioteca.eDefinirProduto_Daruma(pszProduto.encode('latin-1'))
+
 ''' Métodos do modulo genérico '''
 def eAbrirSerial_Daruma(StrPorta, StrVelocidade):
 	return __Biblioteca.eAbrirSerial_Daruma(StrPorta.encode('latin-1'), StrVelocidade.encode('latin-1'))
