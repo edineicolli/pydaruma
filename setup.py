@@ -6,7 +6,7 @@ setup(
     name="pydaruma",
 
     # Version number (initial):
-    version="0.1.3",
+    version="0.1.4",
 
     # Application author details:
     author="Edinei Colli",

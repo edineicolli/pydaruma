@@ -8,7 +8,6 @@ if platform.system() == 'Windows':
 	__PathBiblioteca = ''
 	#__Biblioteca = windll.LoadLibrary(__PathBiblioteca + __NomeBiblioteca + __ExtBiblioteca)
 	__Biblioteca = windll.__getattr__(__PathBiblioteca + __NomeBiblioteca + __ExtBiblioteca)
-	print(__Biblioteca)	
 else:
 	__NomeBiblioteca = 'libDarumaFramework'
 	__ExtBiblioteca = '.so'
@@ -18,6 +17,14 @@ else:
 ''' Métodos do modulo geral '''
 def eDefinirProduto_Daruma(pszProduto):
 	return __Biblioteca.eDefinirProduto_Daruma(pszProduto.encode('latin-1'))
+
+''' Métodos do modulo registry '''
+def regRetornaValorChave_DarumaFramework(pszProduto, pszChave, pszValor):
+	return __Biblioteca.regRetornaValorChave_DarumaFramework(
+		pszProduto.encode('latin-1'), 
+		pszChave.encode('latin-1'), 
+		byref(c_char_p(pszValor)
+	)
 
 ''' Métodos do modulo genérico '''
 def eAbrirSerial_Daruma(StrPorta, StrVelocidade):
