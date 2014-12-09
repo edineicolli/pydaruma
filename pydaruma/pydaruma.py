@@ -23,7 +23,7 @@ def regRetornaValorChave_DarumaFramework(pszProduto, pszChave, pszValor):
 	return __Biblioteca.regRetornaValorChave_DarumaFramework(
 		pszProduto.encode('latin-1'), 
 		pszChave.encode('latin-1'), 
-		byref(c_char_p(pszValor)
+		byref(c_char_p(pszValor))
 	)
 
 ''' Métodos do modulo genérico '''
