@@ -26,6 +26,12 @@ def regRetornaValorChave_DarumaFramework(pszProduto, pszChave, pszValor):
 		byref(c_char_p(pszValor))
 	)
 
+def regAlterarValor_Daruma(pszPathChave, pszValor):
+	return __Biblioteca.regAlterarValor_Daruma(
+		pszPathChave.encode('latin-1'),
+		pszValor.encode('latin-1')
+	)
+
 ''' Métodos do modulo genérico '''
 def eAbrirSerial_Daruma(StrPorta, StrVelocidade):
 	return __Biblioteca.eAbrirSerial_Daruma(StrPorta.encode('latin-1'), StrVelocidade.encode('latin-1'))
