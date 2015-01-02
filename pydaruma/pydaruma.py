@@ -23,7 +23,7 @@ def regRetornaValorChave_DarumaFramework(pszProduto, pszChave, pszValor):
 	return __Biblioteca.regRetornaValorChave_DarumaFramework(
 		pszProduto.encode('latin-1'), 
 		pszChave.encode('latin-1'), 
-		byref(c_char_p(pszValor))
+		byref(c_char_p(bytes(pszValor)))
 	)
 
 def regAlterarValor_Daruma(pszPathChave, pszValor):
@@ -43,7 +43,7 @@ def tEnviarDados_Daruma(StrInformacao, iTamanhoBytes):
 	return __Biblioteca.tEnviarDados_Daruma(StrInformacao.encode('latin-1'), iTamanhoBytes)
 
 def rReceberDados_Daruma(StrInformacao):
-	return __Biblioteca.rReceberDados_Daruma(byref(c_char_p(StrInformacao)))
+	return __Biblioteca.rReceberDados_Daruma(c_char_p(StrInformacao))
 
 '''
 Métodos do modulo ECF
@@ -502,6 +502,41 @@ def rStatusGaveta_ECF_Daruma(Int_Status):
 	return __Biblioteca.rStatusGaveta_ECF_Daruma(byref(c_int(Int_Status)))
 
 ''' Geração de Arquivos '''
+
+def rGerarMFD_ECF_Daruma(szTipo, szInicial, szFinal):
+	return __Biblioteca.rGerarMFD_ECF_Daruma(
+		pszTipo.encode('latin-1'),
+		pszInicial.encode('latin-1'),
+		pszFinal.encode('latin-1')
+	)
+
+def rGerarNFP_ECF_Daruma(szTipo, szInicial, szFinal):
+	return __Biblioteca.rGerarNFP_ECF_Daruma(
+		pszTipo.encode('latin-1'),
+		pszInicial.encode('latin-1'),
+		pszFinal.encode('latin-1')		
+	)
+
+def rGerarTDM_ECF_Daruma(szTipo, szInicial, szFinal):
+	return __Biblioteca.rGerarTDM_ECF_Daruma(
+		pszTipo.encode('latin-1'),
+		pszInicial.encode('latin-1'),
+		pszFinal.encode('latin-1')		
+	)
+def rGerarSINTEGRA_ECF_Daruma(szTipo, szInicial, szFinal):
+	return __Biblioteca.rGerarSINTEGRA_ECF_Daruma(
+		pszTipo.encode('latin-1'),
+		pszInicial.encode('latin-1'),
+		pszFinal.encode('latin-1')
+	)
+
+def rGerarSPED_ECF_Daruma(szTipo, szInicial, szFinal):
+	return __Biblioteca.rGerarSPED_ECF_Daruma(
+		pszTipo.encode('latin-1'),
+		pszInicial.encode('latin-1'),
+		pszFinal.encode('latin-1')		
+	)
+
 def rGerarEspelhoMFD_ECF_Daruma(pszTipo, pszInicial, pszFinal):
 	return __Biblioteca.rGerarEspelhoMFD_ECF_Daruma(
 		pszTipo.encode('latin-1'),
@@ -717,7 +752,7 @@ def eInterpretarErro_ECF_Daruma(iIndice, pszRetorno):
 	return __Biblioteca.eInterpretarErro_ECF_Daruma(iIndice, byref(c_char_p(pszRetorno)))
 
 def eRetornarAvisoErroUltimoCMD_ECF_Daruma(Str_Aviso, Str_Erro):
-	return __Biblioteca.eRetornarAvisoErroUltimoCMD_ECF_Daruma(Str_Aviso.encode('latin-1'), Str_Erro.encode('latin-1'))
+	return __Biblioteca.eRetornarAvisoErroUltimoCMD_ECF_Daruma(byref(c_char_p(Str_Aviso)), byref(c_char_p(Str_Erro)))
 
 def rStatusImpressora_ECF_Daruma(pszStatus):
 	return __Biblioteca.rStatusImpressora_ECF_Daruma(byref(c_char_p(pszStatus)))
