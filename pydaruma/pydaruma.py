@@ -12,7 +12,7 @@ else:
 	__NomeBiblioteca = 'libDarumaFramework'
 	__ExtBiblioteca = '.so'
 	__PathBiblioteca = '/usr/local/lib/'
-	__Biblioteca = CDLL.LoadLibrary(__PathBiblioteca + __NomeBiblioteca + __ExtBiblioteca)
+	__Biblioteca = cdll.LoadLibrary(__PathBiblioteca + __NomeBiblioteca + __ExtBiblioteca)
 
 ''' Métodos do modulo geral '''
 def eDefinirProduto_Daruma(pszProduto):
@@ -502,41 +502,6 @@ def rStatusGaveta_ECF_Daruma(Int_Status):
 	return __Biblioteca.rStatusGaveta_ECF_Daruma(byref(c_int(Int_Status)))
 
 ''' Geração de Arquivos '''
-
-def rGerarMFD_ECF_Daruma(szTipo, szInicial, szFinal):
-	return __Biblioteca.rGerarMFD_ECF_Daruma(
-		pszTipo.encode('latin-1'),
-		pszInicial.encode('latin-1'),
-		pszFinal.encode('latin-1')
-	)
-
-def rGerarNFP_ECF_Daruma(szTipo, szInicial, szFinal):
-	return __Biblioteca.rGerarNFP_ECF_Daruma(
-		pszTipo.encode('latin-1'),
-		pszInicial.encode('latin-1'),
-		pszFinal.encode('latin-1')		
-	)
-
-def rGerarTDM_ECF_Daruma(szTipo, szInicial, szFinal):
-	return __Biblioteca.rGerarTDM_ECF_Daruma(
-		pszTipo.encode('latin-1'),
-		pszInicial.encode('latin-1'),
-		pszFinal.encode('latin-1')		
-	)
-def rGerarSINTEGRA_ECF_Daruma(szTipo, szInicial, szFinal):
-	return __Biblioteca.rGerarSINTEGRA_ECF_Daruma(
-		pszTipo.encode('latin-1'),
-		pszInicial.encode('latin-1'),
-		pszFinal.encode('latin-1')
-	)
-
-def rGerarSPED_ECF_Daruma(szTipo, szInicial, szFinal):
-	return __Biblioteca.rGerarSPED_ECF_Daruma(
-		pszTipo.encode('latin-1'),
-		pszInicial.encode('latin-1'),
-		pszFinal.encode('latin-1')		
-	)
-
 def rGerarEspelhoMFD_ECF_Daruma(pszTipo, pszInicial, pszFinal):
 	return __Biblioteca.rGerarEspelhoMFD_ECF_Daruma(
 		pszTipo.encode('latin-1'),
